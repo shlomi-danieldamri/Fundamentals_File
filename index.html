@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תעודת זהות פונדמנטלית למניה</title>
+    <style>
+        :root {
+            --brand-black: #0d0d0d;
+            --brand-orange: #ff9900;
+            --bg-dark: #121212;
+            --container-bg: #1e1e1e;
+            --card-bg: #2a2a2a;
+            --input-bg: #2d2d2d;
+            --border-color: #404040;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 50px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+            border-top: 8px solid var(--brand-orange);
+            border-radius: 8px;
+        }
+
+        /* Header Area */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: var(--text-primary);
+            margin: 0;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 span {
+            color: var(--brand-orange);
+        }
+
+        /* Top Actions */
+        .top-actions {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        /* Meta Info (Analyst & Date) */
+        .meta-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            border-radius: 8px;
+            flex-wrap: wrap;
+            border: 1px solid var(--border-color);
+        }
+
+        .meta-info .col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .meta-info label {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .meta-info input {
+            padding: 12px;
+            border: 2px solid var(--brand-orange);
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .meta-info input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.3);
+        }
+
+        /* Section Headers */
+        .section-header {
+            background-color: var(--brand-black);
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            border-right: 6px solid var(--brand-orange);
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 4px 0 0 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Layout Grid */
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Input Fields */
+        input[type="text"], input[type="number"], input[type="date"], textarea, select {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--brand-orange);
+            background-color: #353535;
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            text-align: right;
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            font-weight: 700;
+            width: 35%;
+        }
+
+        td {
+            background-color: var(--container-bg);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Radio Buttons Group */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            padding: 12px;
+            background: var(--card-bg);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .radio-option {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+            color: var(--text-primary);
+        }
+
+        input[type="radio"] {
+            accent-color: var(--brand-orange);
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        /* Print Button */
+        .print-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .print-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--brand-black);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .print-btn:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .print-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Summary Section */
+        .summary-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-radius: 12px;
+            border: 2px solid var(--brand-orange);
+            border-right: 6px solid var(--brand-orange);
+        }
+
+        .summary-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--brand-orange);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .summary-item {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-item-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .summary-item-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-height: 1.4em;
+        }
+
+        .summary-item-value.empty {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .summary-conclusion {
+            grid-column: 1 / -1;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .assessment-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .assessment-positive {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .assessment-neutral {
+            background-color: #f5f5f5;
+            color: #616161;
+        }
+
+        .assessment-negative {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        /* Clear Button */
+        .clear-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: #ff6b6b;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid #ff6b6b;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s, color 0.3s;
+        }
+
+        .clear-btn:hover {
+            background-color: #ff6b6b;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .bottom-clear-btn {
+            margin-left: 15px;
+        }
+
+        /* Print Button Styles */
+        .pdf-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--brand-orange);
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            margin-left: 15px;
+        }
+
+        .pdf-btn:hover {
+            background-color: #ffaa22;
+            transform: translateY(-2px);
+        }
+
+        /* Print Specific Styles - Default keeps dark mode */
+        @page {
+            margin: 1cm;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        @media print {
+            .print-btn, .pdf-btn, .print-container, .clear-btn, .top-actions { display: none; }
+
+            /* Hide placeholders in print */
+            input::placeholder, textarea::placeholder {
+                color: transparent !important;
+            }
+
+            /* Default: Preserve dark mode colors */
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                margin: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .meta-info, .section-header, .radio-group, .summary-section,
+            .summary-item, .summary-conclusion, th, td {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .summary-item, .summary-conclusion {
+                box-shadow: none;
+            }
+        }
+
+        /* Light mode for paper printing */
+        body.print-light-mode {
+            background: #fff !important;
+            color: #000 !important;
+        }
+        body.print-light-mode .container {
+            background: #fff !important;
+            border-top-color: #ff9900 !important;
+        }
+        body.print-light-mode h1 { color: #000 !important; }
+        body.print-light-mode h1 span { color: #ff9900 !important; }
+        body.print-light-mode header { border-bottom-color: #000 !important; }
+        body.print-light-mode .section-header {
+            background-color: #eee !important;
+            color: #000 !important;
+            border-right-color: #666 !important;
+        }
+        body.print-light-mode .meta-info {
+            background: #f5f5f5 !important;
+            border-color: #ccc !important;
+        }
+        body.print-light-mode .meta-info label,
+        body.print-light-mode label { color: #333 !important; }
+        body.print-light-mode input,
+        body.print-light-mode textarea {
+            border-color: #ccc !important;
+            background: #fff !important;
+            color: #000 !important;
+        }
+        body.print-light-mode th { background-color: #f0f0f0 !important; color: #000 !important; }
+        body.print-light-mode td { background-color: #fff !important; }
+        body.print-light-mode .radio-group { background: #f8f8f8 !important; border-color: #ccc !important; }
+        body.print-light-mode .radio-option { color: #000 !important; }
+        body.print-light-mode .summary-section { background: #f8f9fa !important; }
+        body.print-light-mode .summary-item,
+        body.print-light-mode .summary-conclusion {
+            background: #fff !important;
+            border-color: #ddd !important;
+        }
+        body.print-light-mode .summary-item-label { color: #666 !important; }
+        body.print-light-mode .summary-item-value { color: #000 !important; }
+        body.print-light-mode footer { color: #888 !important; }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .section-header {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+
+            .col {
+                min-width: 100%;
+            }
+
+            .meta-info .col {
+                min-width: 100%;
+            }
+
+            /* Fix overflowing inputs */
+            input, textarea, select {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            input[type="date"] {
+                width: 100%;
+            }
+
+            /* Inputs inside table cells - full width */
+            td input, td textarea, td select {
+                width: 100%;
+            }
+
+            /* Table as regular form fields on mobile */
+            table {
+                border: none;
+                margin-bottom: 0;
+            }
+
+            table, tbody, th, td, tr {
+                display: block;
+            }
+
+            /* Hide table header row (th cells) */
+            table tr:first-child,
+            th {
+                display: none;
+            }
+
+            /* Hide first td (label column) on mobile */
+            td:first-child:not([data-label]) {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: none;
+            }
+
+            td {
+                width: 100%;
+                text-align: right;
+                border: none;
+                padding: 0;
+                background: transparent;
+            }
+
+            td[data-label] {
+                display: flex;
+                flex-direction: column;
+            }
+
+            td[data-label]::before {
+                content: attr(data-label);
+                font-weight: 600;
+                margin-bottom: 8px;
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+            }
+
+            /* Radio groups */
+            .radio-group {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            /* Buttons */
+            .print-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .pdf-btn, .print-btn, .clear-btn {
+                margin: 0;
+                width: 100%;
+            }
+
+            .bottom-clear-btn {
+                margin-left: 0;
+            }
+
+            /* Summary grid */
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-section {
+                padding: 15px;
+            }
+
+            .summary-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="data:image/webp;base64,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" alt="לוגו" class="logo">
+        <h1>תעודת זהות <span>פונדמנטלית</span> למניה</h1>
+    </header>
+
+    <!-- Top Actions -->
+    <div class="top-actions">
+        <button class="clear-btn" onclick="clearForm()">נקה טופס</button>
+    </div>
+
+    <!-- Analyst Info -->
+    <div class="meta-info">
+        <div class="col">
+            <label for="analystName">שם המנתח:</label>
+            <input type="text" id="analystName" placeholder="הכנס את שמך">
+        </div>
+        <div class="col">
+            <label for="analysisDate">תאריך ניתוח:</label>
+            <input type="date" id="analysisDate">
+        </div>
+    </div>
+
+    <!-- 1. Identity -->
+    <div class="section-header">1. פרטים בסיסיים</div>
+    <div class="row">
+        <div class="col">
+            <label for="companyName">שם החברה:</label>
+            <input type="text" id="companyName" placeholder="לדוגמה: Apple Inc">
+        </div>
+        <div class="col">
+            <label for="ticker">סימול המניה (Ticker):</label>
+            <input type="text" id="ticker" placeholder="לדוגמה: AAPL">
+        </div>
+    </div>
+
+    <!-- 2. Sector -->
+    <div class="section-header">2. סקטור ותעשייה</div>
+    <div class="row">
+        <div class="col">
+            <label for="sector">סקטור (Sector):</label>
+            <input type="text" id="sector" placeholder="לדוגמה: טכנולוגיה">
+        </div>
+        <div class="col">
+            <label for="industry">תת-תחום / תעשייה (Industry):</label>
+            <input type="text" id="industry" placeholder="לדוגמה: חומרה ומכשירים">
+        </div>
+    </div>
+
+    <!-- 3. Activity -->
+    <div class="section-header">3. תחום פעילות החברה</div>
+    <div class="col">
+        <label for="activity">תיאור קצר של הפעילות העסקית המרכזית:</label>
+        <textarea id="activity" placeholder="מה החברה מוכרת? מי הלקוחות שלה? ממה היא מרוויחה את רוב הכסף?"></textarea>
+    </div>
+
+    <!-- 4. Financials -->
+    <div class="section-header">4. נתונים פיננסיים עיקריים</div>
+    <table>
+        <tr>
+            <th>המדד</th>
+            <th>הערך</th>
+        </tr>
+        <tr>
+            <td>שווי שוק (Market Cap)</td>
+            <td data-label="שווי שוק (Market Cap)"><input type="text" id="marketCap" placeholder="$"></td>
+        </tr>
+        <tr>
+            <td>רווח למניה (EPS)</td>
+            <td data-label="רווח למניה (EPS)"><input type="text" id="eps"></td>
+        </tr>
+        <tr>
+            <td>מכפיל רווח (P/E Ratio)</td>
+            <td data-label="מכפיל רווח (P/E Ratio)"><input type="text" id="peRatio"></td>
+        </tr>
+        <tr>
+            <td>יחס חוב להון (Debt/Equity)</td>
+            <td data-label="יחס חוב להון (Debt/Equity)"><input type="text" id="debtEquity"></td>
+        </tr>
+        <tr>
+            <td>צמיחה בהכנסות (YoY)</td>
+            <td data-label="צמיחה בהכנסות (YoY)"><input type="text" id="revenueGrowth" placeholder="%"></td>
+        </tr>
+        <tr>
+            <td>צמיחה ברווח הנקי (YoY)</td>
+            <td data-label="צמיחה ברווח הנקי (YoY)"><input type="text" id="profitGrowth" placeholder="%"></td>
+        </tr>
+    </table>
+
+    <!-- 5. Quarterly Reports -->
+    <div class="section-header">5. ניתוח דוחות רבעוניים אחרונים</div>
+    <div class="row">
+        <div class="col">
+            <label>הכנסות ברבעון האחרון:</label>
+            <input type="text">
+        </div>
+        <div class="col">
+            <label>רווח נקי ברבעון האחרון:</label>
+            <input type="text">
+        </div>
+    </div>
+    <div class="col" style="margin-top: 15px;">
+        <label>האם נרשם שיפור לעומת רבעון מקביל?</label>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="improvement" value="yes"> כן</label>
+            <label class="radio-option"><input type="radio" name="improvement" value="no"> לא</label>
+        </div>
+    </div>
+    <div class="col" style="margin-top: 15px;">
+        <label>סיבת השיפור / ההחמרה (אם ידוע):</label>
+        <textarea rows="2" placeholder="למשל: עונתיות, השקת מוצר חדש..."></textarea>
+    </div>
+
+    <!-- 6. News/Events -->
+    <div class="section-header">6. אירועים מיוחדים וחדשות</div>
+    <div class="col">
+        <label>דיווחים / שמועות / השקות / תביעות / מיזוגים:</label>
+        <textarea rows="3" placeholder="כל מידע חדשותי רלוונטי שעשוי להשפיע על המניה"></textarea>
+    </div>
+
+    <!-- 7. Competition -->
+    <div class="section-header">7. מעמד תחרותי</div>
+    <div class="row">
+        <div class="col">
+            <label>מי המתחרים העיקריים?</label>
+            <textarea rows="3"></textarea>
+        </div>
+        <div class="col">
+            <label>יתרון תחרותי ייחודי (חפיר):</label>
+            <textarea rows="3" placeholder="מה יש להם שאין למתחרים? (מותג חזק, פטנטים, אפקט רשת...)"></textarea>
+        </div>
+    </div>
+
+    <!-- 8. Management -->
+    <div class="section-header">8. הנהלה ודירקטוריון</div>
+    <div class="row">
+        <div class="col">
+            <label>האם היה שינוי הנהלה לאחרונה?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="management_change" value="yes"> כן</label>
+                <label class="radio-option"><input type="radio" name="management_change" value="no"> לא</label>
+            </div>
+        </div>
+        <div class="col">
+            <label>האם קיימת החזקה משמעותית של הנהלה?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="management_hold" value="yes"> כן</label>
+                <label class="radio-option"><input type="radio" name="management_hold" value="no"> לא</label>
+                <label class="radio-option"><input type="radio" name="management_hold" value="unknown"> לא ידוע</label>
+            </div>
+        </div>
+    </div>
+    <div class="col" style="margin-top: 15px;">
+        <label>הערות נוספות על הנהלה:</label>
+        <input type="text" placeholder="שערוריות, הצלחות עבר, ותק...">
+    </div>
+
+    <!-- 9. Conclusion -->
+    <div class="section-header">9. ניתוח כללי וסיכום</div>
+    <div class="col">
+        <label>מצב החברה מבחינה פונדמנטלית:</label>
+        <div class="radio-group" style="font-weight: bold;">
+            <label class="radio-option" style="color: #2e7d32;"><input type="radio" name="status" value="positive"> חיובי</label>
+            <label class="radio-option" style="color: #616161;"><input type="radio" name="status" value="neutral"> ניטרלי</label>
+            <label class="radio-option" style="color: #c62828;"><input type="radio" name="status" value="negative"> שלילי</label>
+        </div>
+    </div>
+    <div class="col" style="margin-top: 20px;">
+        <label>נימוק קצר למסקנה:</label>
+        <textarea id="conclusion" rows="4" placeholder="סיכום סופי של הניתוח - האם המניה נראית אטרקטיבית להשקעה על בסיס הנתונים?"></textarea>
+    </div>
+
+    <!-- 10. Additional Notes -->
+    <div class="section-header">10. הערות נוספות</div>
+    <textarea rows="4" placeholder="כל דבר אחר שחשוב לציין..."></textarea>
+
+    <!-- Summary Section -->
+    <div class="summary-section">
+        <div class="summary-title">סיכום הניתוח</div>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <div class="summary-item-label">חברה וטיקר</div>
+                <div class="summary-item-value" id="summaryCompany">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-item-label">סקטור ותעשייה</div>
+                <div class="summary-item-value" id="summarySector">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-item-label">שווי שוק</div>
+                <div class="summary-item-value" id="summaryMarketCap">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-item-label">מכפיל רווח (P/E)</div>
+                <div class="summary-item-value" id="summaryPE">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-item-label">צמיחה בהכנסות</div>
+                <div class="summary-item-value" id="summaryGrowth">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-item-label">הערכה כללית</div>
+                <div class="summary-item-value" id="summaryAssessment">-</div>
+            </div>
+            <div class="summary-conclusion">
+                <div class="summary-item-label">מסקנה</div>
+                <div class="summary-item-value" id="summaryConclusion">-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Buttons -->
+    <div class="print-container">
+        <button class="pdf-btn" onclick="savePDF()">שמור כ-PDF</button>
+        <button class="print-btn" onclick="printLight()">הדפס (לבן)</button>
+    </div>
+
+    <footer>
+        תבנית לניתוח פונדמנטלי של מניות
+    </footer>
+</div>
+
+<script>
+    // Set today's date as default
+    document.getElementById('analysisDate').valueAsDate = new Date();
+
+    // Elements to watch for summary updates
+    const watchFields = [
+        'companyName', 'ticker', 'sector', 'industry',
+        'marketCap', 'peRatio', 'revenueGrowth', 'conclusion'
+    ];
+
+    // Update summary when fields change
+    function updateSummary() {
+        // Company & Ticker
+        const company = document.getElementById('companyName').value;
+        const ticker = document.getElementById('ticker').value;
+        const companyDisplay = company || ticker
+            ? `${company || '-'}${ticker ? ' (' + ticker + ')' : ''}`
+            : '-';
+        updateSummaryField('summaryCompany', companyDisplay);
+
+        // Sector & Industry
+        const sector = document.getElementById('sector').value;
+        const industry = document.getElementById('industry').value;
+        const sectorDisplay = sector || industry
+            ? `${sector || '-'}${industry ? ' / ' + industry : ''}`
+            : '-';
+        updateSummaryField('summarySector', sectorDisplay);
+
+        // Market Cap
+        updateSummaryField('summaryMarketCap', document.getElementById('marketCap').value || '-');
+
+        // P/E Ratio
+        updateSummaryField('summaryPE', document.getElementById('peRatio').value || '-');
+
+        // Revenue Growth
+        const growth = document.getElementById('revenueGrowth').value;
+        updateSummaryField('summaryGrowth', growth ? growth + (growth.includes('%') ? '' : '%') : '-');
+
+        // Assessment
+        const statusRadio = document.querySelector('input[name="status"]:checked');
+        const assessmentEl = document.getElementById('summaryAssessment');
+        if (statusRadio) {
+            const statusMap = {
+                'positive': { text: 'חיובי', class: 'assessment-positive' },
+                'neutral': { text: 'ניטרלי', class: 'assessment-neutral' },
+                'negative': { text: 'שלילי', class: 'assessment-negative' }
+            };
+            const status = statusMap[statusRadio.value];
+            assessmentEl.innerHTML = `<span class="assessment-badge ${status.class}">${status.text}</span>`;
+            assessmentEl.classList.remove('empty');
+        } else {
+            assessmentEl.textContent = '-';
+            assessmentEl.classList.add('empty');
+        }
+
+        // Conclusion
+        const conclusion = document.getElementById('conclusion').value;
+        updateSummaryField('summaryConclusion', conclusion || '-');
+    }
+
+    function updateSummaryField(id, value) {
+        const el = document.getElementById(id);
+        el.textContent = value;
+        if (value === '-') {
+            el.classList.add('empty');
+        } else {
+            el.classList.remove('empty');
+        }
+    }
+
+    // Add event listeners
+    watchFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', updateSummary);
+        }
+    });
+
+    // Listen for status radio changes
+    document.querySelectorAll('input[name="status"]').forEach(radio => {
+        radio.addEventListener('change', updateSummary);
+    });
+
+    // Clear form function
+    function clearForm() {
+        if (confirm('האם אתה בטוח שברצונך לנקות את כל הטופס?')) {
+            // Clear all inputs and textareas
+            document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(el => {
+                el.value = '';
+            });
+
+            // Uncheck all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Reset date to today
+            document.getElementById('analysisDate').valueAsDate = new Date();
+
+            // Update summary
+            updateSummary();
+        }
+    }
+
+    // Initial summary update
+    updateSummary();
+
+    // Save as PDF - keeps dark mode
+    function savePDF() {
+        window.print();
+    }
+
+    // Print light mode - for paper
+    function printLight() {
+        document.body.classList.add('print-light-mode');
+        window.print();
+        // Remove the class after printing
+        setTimeout(() => {
+            document.body.classList.remove('print-light-mode');
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
